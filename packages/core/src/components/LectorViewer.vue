@@ -3,6 +3,8 @@ import { ref, onMounted, watch } from 'vue'
 import * as pdfjsLib from 'pdfjs-dist'
 import type { PDFDocumentProxy, PDFPageProxy } from 'pdfjs-dist'
 
+pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`
+
 const props = defineProps<{
   url: string
   scale?: number
@@ -46,7 +48,6 @@ onMounted(async () => {
 
 async function loadDocument() {
   try {
-    pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`
     const pdf = await pdfjsLib.getDocument(props.url).promise
     pdfDocument.value = pdf
     totalPages.value = pdf.numPages
