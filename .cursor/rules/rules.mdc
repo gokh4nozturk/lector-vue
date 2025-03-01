@@ -1,0 +1,11 @@
+---
+description: project rules
+globs: 
+alwaysApply: false
+---
+- reference project [ref](mdc:https:/github.com/unriddle-ai/lector/tree/main/packages/lector) 
+- we are creating a modern pdf viewer with vue and modern ui components
+- this project is port of [lector](mdc:https:/github.com/unriddle-ai/lector/tree/main/packages/lector)
+
+# Commit setup
+- follow Conventional Commits concept
