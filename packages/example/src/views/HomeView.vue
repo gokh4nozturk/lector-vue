@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { LectorViewer } from '@lector-vue/core'
+import { Root, Pages, Page, CanvasLayer, TextLayer, Toolbar, Thumbnails } from '@lector-vue/core'
 import type { PDFDocumentProxy } from 'pdfjs-dist'
+import "pdfjs-dist/web/pdf_viewer.css";
+
 
 const pdfUrl = ref('https://raw.githubusercontent.com/mozilla/pdf.js/master/web/compressed.tracemonkey-pldi-09.pdf')
 const scale = ref(1.0)
@@ -25,14 +27,14 @@ function onError(error: Error) {
   <main>
     <h1>Lector Vue Example</h1>
     <div class="pdf-container">
-      <LectorViewer
-        :url="pdfUrl"
-        :scale="scale"
-        :page-number="pageNumber"
-        @document-load="onDocumentLoad"
-        @page-change="onPageChange"
-        @error="onError"
-      />
+      <Root source="/sample.pdf">
+        <Pages>
+          <Page :pageNumber="pageNumber">
+            <CanvasLayer />
+            <TextLayer />
+          </Page>
+        </Pages>
+      </Root>
     </div>
   </main>
 </template>
